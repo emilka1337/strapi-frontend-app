@@ -1,0 +1,217 @@
+@import "./variables";
+@import "./mixins";
+// @import "./flickity";
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+body {
+    margin: 0;
+    background: $siteBgColor;
+    font-family: "Nunito", sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6, p, label, a {
+    color: #fff;
+}
+
+header {
+    ul {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        list-style: none;
+        background: #cecece;
+
+        a {
+            display: inline-block;
+            padding: 10px 25px;
+            text-decoration: none;
+            color: #000;
+            transition: 400ms;
+
+            &:hover {
+                background: #000;
+                color: #fff;
+            }
+        }
+    }
+}
+
+.projects {
+    h1 {
+        text-align: center;
+    }
+
+    .projects-container {
+        width: 80%;
+        margin: auto;
+        margin-top: 50px;
+        padding-bottom: 50px;
+
+        .section-label {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+
+            .line {
+                width: 200px;
+                display: inline-block;
+                height: 3px;
+                width: 120px;
+                background: $accentColor;
+            }
+
+            h2 {
+                text-align: center;
+                font-size: 34px;
+                font-weight: 600;
+            }
+        }
+
+        .project {
+            display: flex;
+            margin-bottom: 50px;
+            padding: 20px 0px;
+
+            &:nth-child(even) {
+                flex-direction: row-reverse;
+
+                .photos {
+                    padding-right: 50px;
+                    padding-left: 0;
+                }
+            }
+
+            .description {
+                width: 50%;
+
+                h3 {
+                    font-size: 26px;
+                    font-weight: 600;
+                    margin-top: 0;
+                }
+
+                .technologies {
+                    margin: 0;
+                    padding: 10px 0px;
+                    list-style: none;
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 20px;
+
+                    li {
+                        background: #16232c;
+                        color: #fff;
+                        font-size: 14px;
+                        font-weight: 600;
+                        border-radius: 20px;
+                        padding: 10px 25px;
+                        cursor: default;
+                        user-select: none;
+                        transition: 300ms;
+
+                        &:hover {
+                            color: #000;
+                            background: $accentColor;
+                        }
+                    }
+                }
+
+                p {
+                    font-weight: 100;
+                    margin: 30px 0px;
+                }
+
+                .actions {
+                    .visit {
+                        @include externalLink(14px);
+                    }
+
+                    .view-code {
+                        margin-left: 15px;
+                        font-size: 14px;
+                        text-decoration: none;
+
+                        &:hover {
+                            text-decoration: underline;
+                        }
+                    }
+                }
+            }
+
+            .photos {
+                width: 50%;
+                padding-left: 50px;
+
+                .project-carousel {
+                    .flickity-slider, .carousel-cell {
+                        will-change: transform;
+                    }
+                    .flickity-button {
+                        background: transparent;
+                        border-radius: 0;
+                        height: 100%;
+                        color: #fff;
+                        mix-blend-mode: exclusion;
+                        opacity: 0.5;
+                        text-shadow: 0px 0px 20px #343434;
+                    }
+
+                    /* position dots up a bit */
+                    .flickity-page-dots {
+                        bottom: -22px;
+                    }
+                    /* dots are lines */
+                    .flickity-page-dots .dot {
+                        height: 4px;
+                        width: 40px;
+                        margin: 0;
+                        border-radius: 0;
+                        background: $accentColor;
+                    }
+                }
+
+                img {
+                    max-width: 100%;
+                }
+            }
+        }
+
+        @media screen and (max-width: 1024px) {
+            width: 90%;
+        }
+
+        @media screen and (max-width: 992px) {
+            width: 90%;
+
+            .project {
+                flex-direction: column !important;
+                text-align: center;
+                margin-bottom: 70px;
+
+                .description {
+                    width: 100%;
+
+                    .technologies {
+                        padding: 20px 0px;
+                    }
+
+                    .actions {
+                        padding: 40px 0px;
+                    }
+                }
+
+                .photos {
+                    width: 100%;
+                    padding: 0 !important;
+                }
+            }
+        }
+    }
+}
