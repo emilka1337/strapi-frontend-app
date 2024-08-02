@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import UsedTechnologies from "./UsedTechnologies";
 import Photos from "./Photos";
+import SectionLabel from "./SectionLabel";
 
 function Projects() {
     let [projects, setProjects] = useState([]);
@@ -21,18 +22,17 @@ function Projects() {
     return (
         <main className="projects">
             <div className="projects-container">
-                <div className="section-label">
-                    <div className="line"></div>
-                    <h2 className="translatable-text">My projects</h2>
-                    <div className="line"></div>
-                </div>
+                <SectionLabel />
+
                 {projects.map((project, index) => {
+                    let attributes = project.attributes;
+
                     return (
                         <div className="project" key={index}>
                             <div className="description">
-                                <h3>{project.attributes.Project_Name}</h3>
-                                <UsedTechnologies data={project.attributes.Used_Technologies} />
-                                <p>{project.attributes?.Project_Descriprion?.[0].children[0].text}</p>
+                                <h3>{attributes.Project_Name}</h3>
+                                <UsedTechnologies data={attributes.Used_Technologies} />
+                                <p>{attributes?.Project_Descriprion?.[0].children[0].text}</p>
                                 <div className="actions">
                                     <a href={project.attributes.Links.visit} target="_blank" className="visit">
                                         <span className="translatable-text">Visit Site</span>
@@ -63,7 +63,7 @@ function Projects() {
                                     </a>
                                 </div>
                             </div>
-                            <Photos photos={project.attributes.Project_Screenshots.data} />
+                            <Photos photos={attributes.Project_Screenshots.data} />
                         </div>
                     );
                 })}
