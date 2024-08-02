@@ -1,26 +1,6 @@
 import { useState, useEffect } from "react";
-import Flickity from "react-flickity-component";
 import UsedTechnologies from "./UsedTechnologies";
-
-import "./scss/flickity.min.css"
-
-const flickityOptions = {
-    cellAlign: "left",
-    contain: true,
-    wrapAround: true,
-    autoPlay: 3000,
-    selectedAttraction: 0.005,
-    friction: 0.15,
-    imagesLoaded: true,
-    arrowShape: {
-        x0: 10,
-        x1: 60,
-        y1: 50,
-        x2: 65,
-        y2: 45,
-        x3: 20,
-    },
-};
+import Photos from "./Photos";
 
 function Projects() {
     let [projects, setProjects] = useState([]);
@@ -40,8 +20,12 @@ function Projects() {
 
     return (
         <main className="projects">
-            <h1>Projects</h1>
             <div className="projects-container">
+                <div className="section-label">
+                    <div className="line"></div>
+                    <h2 className="translatable-text">My projects</h2>
+                    <div className="line"></div>
+                </div>
                 {projects.map((project, index) => {
                     return (
                         <div className="project" key={index}>
@@ -79,20 +63,7 @@ function Projects() {
                                     </a>
                                 </div>
                             </div>
-                            <div className="photos">
-                                <Flickity
-                                    className={"carousel"}
-                                    elementType={"div"}
-                                    options={flickityOptions}
-                                    disableImagesLoaded={false}
-                                    reloadOnUpdate
-                                    static
-                                >
-                                    {project.attributes.Project_Screenshots.data.map((item, index) => {
-                                        return <img src={`${item.attributes.url}`} key={index}/>;
-                                    })}
-                                </Flickity>
-                            </div>
+                            <Photos photos={project.attributes.Project_Screenshots.data} />
                         </div>
                     );
                 })}

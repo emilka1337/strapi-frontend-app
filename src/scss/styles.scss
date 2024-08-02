@@ -2,7 +2,7 @@
 @import "./mixins";
 // @import "./flickity";
 
-@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
 
 body {
     margin: 0;
@@ -14,38 +14,19 @@ body {
     box-sizing: border-box;
 }
 
-h1, h2, h3, h4, h5, h6, p, label, a {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+label,
+a {
     color: #fff;
 }
 
-header {
-    ul {
-        margin: 0;
-        padding: 0;
-        display: flex;
-        list-style: none;
-        background: #cecece;
-
-        a {
-            display: inline-block;
-            padding: 10px 25px;
-            text-decoration: none;
-            color: #000;
-            transition: 400ms;
-
-            &:hover {
-                background: #000;
-                color: #fff;
-            }
-        }
-    }
-}
-
 .projects {
-    h1 {
-        text-align: center;
-    }
-
     .projects-container {
         width: 80%;
         margin: auto;
@@ -148,37 +129,41 @@ header {
             .photos {
                 width: 50%;
                 padding-left: 50px;
-
-                .project-carousel {
-                    .flickity-slider, .carousel-cell {
-                        will-change: transform;
-                    }
-                    .flickity-button {
-                        background: transparent;
-                        border-radius: 0;
-                        height: 100%;
-                        color: #fff;
-                        mix-blend-mode: exclusion;
-                        opacity: 0.5;
-                        text-shadow: 0px 0px 20px #343434;
-                    }
-
-                    /* position dots up a bit */
-                    .flickity-page-dots {
-                        bottom: -22px;
-                    }
-                    /* dots are lines */
-                    .flickity-page-dots .dot {
-                        height: 4px;
-                        width: 40px;
-                        margin: 0;
-                        border-radius: 0;
-                        background: $accentColor;
-                    }
-                }
+                position: relative;
 
                 img {
                     max-width: 100%;
+                }
+
+                .slider-control {
+                    position: absolute;
+                    z-index: 100;
+                    top: calc(50% - 15px);
+                    background: transparent;
+                    border: none;
+                    cursor: pointer;
+                    color: #fff;
+                    transition: 300ms;
+
+                    &:hover {
+                        transform: scale(1.1);
+                    }
+
+                    &.next {
+                        right: 10px;
+                    }
+
+                    &.prev {
+                        left: 10px;
+
+                        svg {
+                            transform: rotate(180deg);
+                        }
+                    }
+
+                    svg {
+                        width: 30px;
+                    }
                 }
             }
         }
